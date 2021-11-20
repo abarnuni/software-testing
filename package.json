@@ -1,0 +1,25 @@
+{
+  "name": "ass-2",
+  "version": "1.0.0",
+  "description": "Software testing assignment part 2",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abarnuni/software-testing-assignment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abarnuni/software-testing-assignment/issues"
+  },
+  "homepage": "https://github.com/abarnuni/software-testing-assignment#readme",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.3",
+    "mochawesome": "^7.0.1"
+  }
+}
