@@ -20,7 +20,195 @@ import clamp from "../test-object/src/clamp.js";
 describe("defaultToAny.js - Provides a default value from a list of potential values, when passed undefined", () => {
 
     it("DEFAULTTOANY1: undefined value and undefined default values", () => {
-        expect(defaultToAny(undefined, NaN, NaN, null)).to.equal(null);
+        expect(defaultToAny(null, undefined, undefined, undefined)).to.equal(undefined);
+    });
+
+    it("DEFAULTTOANY2: values with first defined value as an empty array", () => {
+        const values = [];
+        const object = {};
+        const str = '';
+        expect(defaultToAny(undefined, values, object, str)).to.equal(values);
+    });
+
+    it("DEFAULTTOANY3: values with first defined value as an int", () => {
+        expect(defaultToAny(undefined, 1, 10, 20)).to.equal(1);
+    });
+
+    it("DEFAULTTOANY4: values with first defined value as an empty object", () => {
+        const object = {};
+        const values = [];    
+        const str = "cat";
+        expect(defaultToAny(object, values, str, null)).to.equal(object);
+    });
+
+    it("DEFAULTTOANY5: values with first defined value as an empty string", () => {
+        const str = '';
+        const values = [1, 2, 3];
+        const object = {}
+        expect(defaultToAny(str, values, NaN, object)).to.equal(str);
+    });
+
+    it("DEFAULTTOANY6: values with first defined value as false", () => {
+        const values = false;
+        const str = '';
+        const object = {
+            item : "chair",
+            room : "living room"
+        };
+        expect(defaultToAny(values, undefined, null, object)).to.equal(values);
+    });
+
+    it("DEFAULTTOANY7: values with first defined value as array with elements", () => {
+        const values = [1, 2, 3];
+        const object = {};
+        expect(defaultToAny(values, 1,object, undefined)).to.equal(values);
+    });
+
+    it("DEFAULTTOANY8: values with first defined value as object with elements", () => {
+        const car = {
+            model: "Toyota",
+            color: "Silver"
+        };
+        const str = "yellow";
+        const values = {};
+        expect(defaultToAny(car, NaN, str, values)).to.equal(car);
+    });
+
+    it("DEFAULTTOANY9: values with first defined value as array lists", () => {
+        const lists = ["a", "b", "c"];
+        const car = {};
+        const str = "yellow";
+        expect(defaultToAny(lists, car, undefined, str)).to.equal(lists);
+    });
+
+    it("DEFAULTTOANY10: empty inputs", () => {
+        
+        expect(defaultToAny()).to.equal();
+    });
+
+    it("DEFAULTTOANY11: undefined values and undefined default value", () => {
+
+        expect(defaultToAny(NaN, undefined, null)).to.equal(null);
+    });
+
+    it("DEFAULTTOANY12: values with first defined value as an empty array", () => {
+        const values = [];
+        const str = '';
+        expect(defaultToAny(undefined, values, str)).to.equal(values);
+    });
+
+    it("DEFAULTTOANY13: values with first defined value as array with elements", () => {
+        const lists = [1, "car", ''];
+        expect(defaultToAny(null, lists, 15)).to.equal(lists);
+    });
+
+    it("DEFAULTTOANY14: values with first defined value as an empty string", () => {
+        const str = '';
+        const object = {};
+        expect(defaultToAny(str, object, undefined)).to.equal(str);
+    });
+
+    it("DEFAULTTOANY15: values with first defined value as an empty object", () => {
+        const object = {};
+        expect(defaultToAny(object, 25, NaN)).to.equal(object);
+    });
+
+    it("DEFAULTTOANY16: values with first defined value as an empty array", () => {
+        const lists = [];
+        const str = '';
+        expect(defaultToAny(lists, NaN, str)).to.equal(lists);
+    });
+
+    it("DEFAULTTOANY17: values with first defined value as an int", () => {
+        const lists = [5, 10, 20, 0];
+        const object = {};
+        expect(defaultToAny(1, lists, object)).to.equal(1);
+    });
+
+    it("DEFAULTTOANY18: values with first defined value as an object", () => {
+        const car = {
+            model: "Toyota",
+            color: "Silver"
+        };
+        const lists = [5, 10, 20, 0];
+        expect(defaultToAny(car, undefined, lists)).to.equal(car);
+    });
+
+    it("DEFAULTTOANY19: values with first defined value as a string", () => {
+        const str = false;
+        const objects = {};
+        const lists = [{}, {}, {}];
+        expect(defaultToAny(str, objects, lists)).to.equal(str);
+    });
+
+    it("DEFAULTTOANY20: undefined values and undefined default values", () => {
+        expect(defaultToAny(null, NaN)).to.deep.equal(NaN);
+    });
+
+    it("DEFAULTTOANY21: undefined value and empty value", () => {
+        const object = {};
+        expect(defaultToAny(undefined, object)).to.equal(object);
+    });
+
+    it("DEFAULTTOANY22: undefined value and defined array", () => {
+        const lists = [5, 10, 20, 0];
+        expect(defaultToAny(NaN, lists)).to.equal(lists);
+    });
+
+    it("DEFAULTTOANY23: defined empty object and defined empty array", () => {
+        const object = {};
+        const lists = [];
+        expect(defaultToAny(object, lists)).to.equal(object);
+    });
+
+    it("DEFAULTTOANY24: defined empty str and defined empty array", () => {
+        const str = "";
+        const lists = ['a', 2, 'red'];
+        expect(defaultToAny(str, lists)).to.equal(str);
+    });
+
+    it("DEFAULTTOANY25: defined empty array and undefined value", () => {
+        const lists = [];
+        expect(defaultToAny(lists, NaN)).to.equal(lists);
+    });
+
+    it("DEFAULTTOANY26: two defined values", () => {
+        const car = {
+            model: "Toyota",
+            color: "Silver"
+        };
+        expect(defaultToAny(car, 10)).to.equal(car);
+    });
+
+    it("DEFAULTTOANY27: defined array and undefined value", () => {
+        const lists = [5, 10, 20, 0];
+        expect(defaultToAny(lists, undefined)).to.equal(lists);
+    });
+
+    it("DEFAULTTOANY28: two defined values", () => {
+        const object = {};
+        expect(defaultToAny(1500, object)).to.equal(1500);
+    });
+
+    it("DEFAULTTOANY29: one defined value", () => {
+        expect(defaultToAny(1.5)).to.equal(1.5);
+    });
+
+    it("DEFAULTTOANY30: one empty value", () => {
+        const values = {}
+        expect(defaultToAny(values)).to.equal(values);
+    });
+
+    it("DEFAULTTOANY31: undefined value to default undefined value", () => {
+        expect(defaultToAny(null)).to.equal(null);
+    });
+
+    it("DEFAULTTOANY32: undefined values and defined value", () => {
+        expect(defaultToAny(null, NaN, undefined, 15)).to.equal(15);
+    });
+
+    it("DEFAULTTOANY33: undefined values and defined value", () => {
+        expect(defaultToAny(null, undefined, 20, NaN)).to.equal(20);
     });
 
 });
