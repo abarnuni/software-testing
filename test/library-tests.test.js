@@ -81,9 +81,8 @@ describe("defaultToAny.js - Provides a default value from a list of potential va
         expect(defaultToAny(lists, car, undefined, str)).to.equal(lists);
     });
 
-    it("DEFAULTTOANY10: empty inputs", () => {
-        
-        expect(defaultToAny()).to.equal();
+    it("DEFAULTTOANY10: empty inputs", () => {     
+        expect(function () {defaultToAny()}).to.throw(Error);
     });
 
     it("DEFAULTTOANY11: undefined values and undefined default value", () => {
@@ -282,8 +281,136 @@ describe("add.js - Adding 2 numbers", () => {
         expect(add(1, 2)).to.equal(3);
     });
 
+    it("ADD2: add positive integer to negative integer", () => {
+        expect(add(7, -3)).to.equal(4);
+    });
+
+    it("ADD3: add positive integer to float", () => {
+        expect(add(10, 5.5)).to.be.approximately(15.5, 0.1);
+    });
+
+    it("ADD4: add positive integer to zero", () => {
+        expect(add(10, 0)).to.equal(10);
+    });
+
     it("ADD5: add positive integer to illegal value", () => {
         expect(function(){add(1, "LOL")}).to.throw(TypeError);
+    });
+
+    it("ADD6: add positive integer to empty", () => {
+        expect(add(5)).to.equal(5);
+    });
+
+    it("ADD7: add negative integer to negative integer", () => {
+        expect(add(-10, -15)).to.equal(-25);
+    });
+
+    it("ADD8: add negative integer to float", () => {
+        expect(add(-10, 3.05)).to.be.approximately(-6.95, 0.1);
+    });
+
+    it("ADD9: add negative integer to zero", () => {
+        expect(add(-10, 0)).to.equal(-10);
+    });
+
+    it("ADD10: add negative integer to illegal value", () => {
+        expect(function(){add(-5, "Degree")}).to.throw(TypeError);
+    });
+
+    it("ADD11: add negative integer to empty", () => {
+        expect(add(-2)).to.equal(-2);
+    });
+
+    it("ADD12: add negative integer to positive integer", () => {
+        expect(add(-2, 2)).to.equal(0);
+    });
+
+    it("ADD13: add float to float", () => {
+        expect(add(6.85, 3.1000055)).to.be.approximately(9.9500055, 0.1);
+    });
+
+    it("ADD14: add float to zero", () => {
+        expect(add(3.155, 0)).to.be.approximately(3.155, 0.1);
+    });
+
+    it("ADD15: add float to illegal value", () => {
+        expect(function() {add(5.005, "Degree Celcius") }).to.throw(TypeError);
+    });
+
+    it("ADD16: add float to empty", () => {
+        expect(add(5.1055)).to.be.approximately(5.1055, 0.1);
+    });
+
+    it("ADD17: add float to positive integer", () => {
+        expect(add(5.1055, 15)).to.be.approximately(20.1055, 0.1);
+    });
+
+    it("ADD18: add float to negative integer", () => {
+        expect(add(5.1055, -15)).to.be.approximately(-9.8945, 0.1);
+    });
+
+    it("ADD19: add zero to zero", () => {
+        expect(add(0, 0)).to.equal(0);
+    });
+
+    it("ADD20: add zero to illegal value", () => {
+        expect(function () { add(0, "Degree Celcius") }).to.throw(TypeError);
+    });
+
+    it("ADD21: add zero to empty", () => {
+        expect(add(0)).to.equal(0);
+    });
+
+    it("ADD22: add zero to positive integer", () => {
+        expect(add(0, 100)).to.equal(100);
+    });
+
+    it("ADD23: add zero to negative integer", () => {
+        expect(add(0, -75)).to.equal(-75);
+    });
+
+    it("ADD24: add zero to float", () => {
+        expect(add(0, 1.00000000055)).to.be.approximately(1.00000000055, 0.1);
+    });
+
+    it("ADD25: add positive integer to negative float", () => {
+        expect(add(11, -2.65)).to.be.approximately(8.35, 0.1);
+    });
+
+    it("ADD26: add illegal value to empty", () => {
+        expect(function () { add("Degree Celcius") }).to.throw(TypeError);
+    });
+
+    it("ADD27: add illegal value to positive integer", () => {
+        expect(function () { add("Degree Celcius", 5) }).to.throw(TypeError);
+    });
+
+    it("ADD28: add illegal value to negative integer", () => {
+        expect(function () { add("Degree Celcius", -5) }).to.throw(TypeError);
+    });
+
+    it("ADD29: add illegal value to float", () => {
+        expect(function () { add("Degree Celcius", 0.05) }).to.throw(TypeError);
+    });
+
+    it("ADD30: add illegal value to zero", () => {
+        expect(function () { add("Degree Celcius", 0) }).to.throw(TypeError);
+    });
+
+    it("ADD31: the inputs are left empty", () => {
+        expect(add()).to.equal(0);
+    });
+
+    it("ADD32: add float to negative of the same float", () => {
+        expect(add(1.05, -1.05)).to.be.approximately(0, 0.1);
+    });
+
+    it("ADD33: very large number to very large number", () => {
+        expect(add(123456789, 987654321)).to.equal(1111111110);
+    });
+
+    it("ADD34: very small magnitude number to very small magnitude number", () => {
+        expect(add(0.0000000009, 0.0000000001)).to.be.approximately(0.000000001, 0.1);
     });
 
 });
