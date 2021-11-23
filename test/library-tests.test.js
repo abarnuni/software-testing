@@ -286,7 +286,7 @@ describe("add.js - Adding 2 numbers", () => {
     });
 
     it("ADD3: add positive integer to float", () => {
-        expect(add(10, 5.5)).to.be.approximately(15.5, 0.1);
+        expect(add(10, 5.5)).to.be.approximately(15.5, 0.000001);
     });
 
     it("ADD4: add positive integer to zero", () => {
@@ -306,7 +306,7 @@ describe("add.js - Adding 2 numbers", () => {
     });
 
     it("ADD8: add negative integer to float", () => {
-        expect(add(-10, 3.05)).to.be.approximately(-6.95, 0.1);
+        expect(add(-10, 3.05)).to.be.approximately(-6.95, 0.000001);
     });
 
     it("ADD9: add negative integer to zero", () => {
@@ -326,11 +326,11 @@ describe("add.js - Adding 2 numbers", () => {
     });
 
     it("ADD13: add float to float", () => {
-        expect(add(6.85, 3.1000055)).to.be.approximately(9.9500055, 0.1);
+        expect(add(6.85, 3.1000055)).to.be.approximately(9.9500055, 0.000001);
     });
 
     it("ADD14: add float to zero", () => {
-        expect(add(3.155, 0)).to.be.approximately(3.155, 0.1);
+        expect(add(3.155, 0)).to.be.approximately(3.155, 0.000001);
     });
 
     it("ADD15: add float to illegal value", () => {
@@ -338,15 +338,15 @@ describe("add.js - Adding 2 numbers", () => {
     });
 
     it("ADD16: add float to empty", () => {
-        expect(add(5.1055)).to.be.approximately(5.1055, 0.1);
+        expect(add(5.1055)).to.be.approximately(5.1055, 0.000001);
     });
 
     it("ADD17: add float to positive integer", () => {
-        expect(add(5.1055, 15)).to.be.approximately(20.1055, 0.1);
+        expect(add(5.1055, 15)).to.be.approximately(20.1055, 0.000001);
     });
 
     it("ADD18: add float to negative integer", () => {
-        expect(add(5.1055, -15)).to.be.approximately(-9.8945, 0.1);
+        expect(add(5.1055, -15)).to.be.approximately(-9.8945, 0.000001);
     });
 
     it("ADD19: add zero to zero", () => {
@@ -370,11 +370,11 @@ describe("add.js - Adding 2 numbers", () => {
     });
 
     it("ADD24: add zero to float", () => {
-        expect(add(0, 1.00000000055)).to.be.approximately(1.00000000055, 0.1);
+        expect(add(0, 1.00000000055)).to.be.approximately(1.00000000055, 0.000001);
     });
 
     it("ADD25: add positive integer to negative float", () => {
-        expect(add(11, -2.65)).to.be.approximately(8.35, 0.1);
+        expect(add(11, -2.65)).to.be.approximately(8.35, 0.000001);
     });
 
     it("ADD26: add illegal value to empty", () => {
@@ -402,7 +402,7 @@ describe("add.js - Adding 2 numbers", () => {
     });
 
     it("ADD32: add float to negative of the same float", () => {
-        expect(add(1.05, -1.05)).to.be.approximately(0, 0.1);
+        expect(add(1.05, -1.05)).to.be.approximately(0, 0.000001);
     });
 
     it("ADD33: very large number to very large number", () => {
@@ -410,7 +410,7 @@ describe("add.js - Adding 2 numbers", () => {
     });
 
     it("ADD34: very small magnitude number to very small magnitude number", () => {
-        expect(add(0.0000000009, 0.0000000001)).to.be.approximately(0.000000001, 0.1);
+        expect(add(0.0000000009, 0.0000000001)).to.be.approximately(0.000000001, 0.00000000001);
     });
 
 });
