@@ -222,6 +222,55 @@ describe("ceil.js - Rounds a number up with given precision", () => {
         expect(ceil(6, 1.5)).to.deep.equal(NaN);
     });
 
+    it("CEIL3: round integer with illegal value", () => {
+
+        expect(ceil(6, "id")).to.deep.equal(NaN);
+    });
+
+    it("CEIL4: round integer with empty value", () => {
+        expect(ceil(5)).to.equal(5);
+    });
+
+    it("CEIL5: round float with float", () => {
+        expect(ceil(5.35, 1.5)).to.deep.equal(NaN);
+    });
+
+    it("CEIL6: round float with illegal value", () => {
+
+        expect(function () { ceil(6.75, "id") }).to.throw(TypeError);
+    });
+
+    it("CEIL7: round float with empty value", () => {
+        expect(ceil(5.35)).to.equal(6);
+    });
+
+    it("CEIL8: round float with integer precision", () => {
+        expect(ceil(5.353, 2)).to.equal(5.36);
+    });
+
+    it("CEIL9: rounding illegal value", () => {
+        expect(ceil("id")).to.deep.equal(NaN);
+    });
+
+    it("CEIL10: rounding illegal value with integer", () => {
+        expect(ceil("id", 2)).to.deep.equal(NaN);
+    });
+
+    it("CEIL11: rounding illegal value with float", () => {
+        expect(ceil("id", 2.25)).to.deep.equal(NaN);
+    });
+
+    it("CEIL12: empty inputs", () => {
+        expect(ceil()).to.deep.equal(NaN);
+    });
+
+    it("CEIL13: round float with integer precision", () => {
+        expect(ceil(5.353, 3)).to.equal(5.353);
+    });
+
+    it("CEIL14: round float with integer precision", () => {
+        expect(ceil(5.613, 1)).to.equal(5.7);
+    });
 });
 
 describe("keys.js - Creates an array of the property names of an object", () => {
