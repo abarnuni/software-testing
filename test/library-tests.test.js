@@ -427,6 +427,35 @@ describe("toNumber.js - Converts the given value to a number", () => {
         expect(toNumber("32.5")).to.equal(32.5);
     });
 
+    it("TONUMBER2: a string that is not a number", () => {
+        expect(toNumber("Hello")).to.deep.equal(NaN);
+    });
+
+    it("TONUMBER3: symbol as in input", () => {
+        const symbol = Symbol();
+        expect(toNumber(symbol)).to.deep.equal(NaN);
+    });
+
+    it("TONUMBER4: object as in input", () => {
+        const car = {
+            model: "Toyota",
+            color: "Silver"
+        };
+        expect(toNumber(car)).to.deep.equal(NaN);
+    });
+
+    it("TONUMBER5: converts binary into a number", () => {
+        expect(toNumber(0b00011001)).to.equal(25);
+    });
+
+    it("TONUMBER6: converts hex into a number", () => {
+        expect(toNumber(0x19)).to.equal(25);
+    });
+
+    it("TONUMBER7: empty input", () => {
+        expect(toNumber()).to.deep.equal(NaN);
+    });
+
 });
 
 describe("add.js - Adding 2 numbers", () => {
@@ -571,8 +600,155 @@ describe("add.js - Adding 2 numbers", () => {
 
 describe("slice.js - Converts the given value to a number", () => {
 
+    const nonEmptyArray = [1, 2, 3, 4, 5, 6, 7];
+    const nonArray = 12;
+
     it("SLICE1: empty array with positive integer start and end", () => {
         expect(slice([], 1, 2)).to.deep.equal([]);
+    });
+
+    it("SLICE2: empty array with negative integer start and end", () => {
+        expect(slice([], -1, -2)).to.deep.equal([]);
+    });
+
+    it("SLICE3: empty array with float start and end", () => {
+        expect(function () { slice([], 1.5, 2.5) }).to.throw(TypeError);
+    });
+
+    it("SLICE4: empty array with zero as start an end", () => {
+        expect(slice([], 0, 0)).to.deep.equal([]);
+    });
+
+    it("SLICE5: empty array with illegal value as start and positive integer as end", () => {
+        expect(function () { slice([], "world", 3) }).to.throw(TypeError);
+    });
+
+    it("SLICE6: empty array with no start and end", () => {
+        expect(slice([])).to.deep.equal([]);
+    });
+
+    it("SLICE7: non-empty array with negative integer as start and float as end", () => {
+        expect(function () { slice(nonEmptyArray, -2, 3.21) }).to.throw(TypeError);
+    });
+
+    it("SLICE8: non-empty array with float as start and zero as end", () => {
+        expect(function () { slice(nonEmptyArray, 3.12, 0) }).to.throw(TypeError);
+    });
+
+    it("SLICE9: non-empty array with zero as start and illegal value as end", () => {
+        expect(function () { slice(nonEmptyArray, 0, "string") }).to.throw(TypeError);
+    });
+
+    it("SLICE10: non-empty array with illegal value as start and empty as end", () => {
+        expect(function () { slice(nonEmptyArray, "string") }).to.throw(TypeError);
+    });
+
+    it("SLICE11: non-empty array with positive integer as start", () => {
+        expect(slice(nonEmptyArray, 3)).to.deep.equal([4, 5, 6, 7]);
+    });
+
+    it("SLICE12: non-empty array with positive integer as start and negative integer as end", () => {
+        expect(slice(nonEmptyArray, 2, -3)).to.deep.equal([3, 4]);
+    });
+
+    it("SLICE13: non array with float as start and negative integer as end", () => {
+        expect(function () { slice(nonArray, 2.4, -2) }).to.throw(TypeError);
+    });
+
+    it("SLICE14: non array with zero as start", () => {
+        expect(function () { slice(nonArray, 0) }).to.throw(TypeError);
+    });
+
+    it("SLICE15: non array with zero as start and positive integer as end", () => {
+        expect(function () { slice(nonArray, 0, 2) }).to.throw(TypeError);
+    });
+
+    it("SLICE16: non array with negative integer as start", () => {
+        expect(function () { slice(nonArray, -1) }).to.throw(TypeError);
+    });
+
+    it("SLICE17: non array with positive integer as start and float as end", () => {
+        expect(function () { slice(nonArray, 1, 1.13) }).to.throw(TypeError);
+    });
+
+    it("SLICE18: non array with negative integer as start and zero as end", () => {
+        expect(function () { slice(nonArray, -2, 0) }).to.throw(TypeError);
+    });
+
+    it("SLICE19: empty array with illegal value as start and float as end", () => {
+        expect(function () { slice([], "string", 1.53) }).to.throw(TypeError);
+    });
+
+    it("SLICE20: empty array with zero as start", () => {
+        expect(slice([], 0)).to.deep.equal([]);
+    });
+
+    it("SLICE21: empty array with positive integer as start and illegal value as end", () => {
+        expect(function () { slice([], 1, "string") }).to.throw(TypeError);
+    });
+
+    it("SLICE22: empty array with negative integer as start", () => {
+        expect(slice([], -2)).to.deep.equal([]);
+    });
+
+    it("SLICE23: empty array with float as start and positive integer as end", () => {
+        expect(function () { slice([], 3.6, 2) }).to.throw(TypeError);
+    });
+
+    it("SLICE24: empty array with zero as start and negative integer as end", () => {
+        expect(slice([], 0, -2)).to.deep.equal([]);
+    });
+
+    it("SLICE25: non empty array with illegal value ", () => {
+        expect(function () { slice(nonEmptyArray, "string") }).to.throw(TypeError);
+    });
+
+    it("SLICE26: non empty array with positive integer", () => {
+        expect(slice(nonEmptyArray, 3)).to.deep.equal([4, 5, 6, 7]);
+    });
+
+    it("SLICE27: non empty array with negative integer as start and positive integer as end", () => {
+        expect(slice(nonEmptyArray, -1, 3)).to.deep.equal([]);
+    });
+
+    it("SLICE28: non empty array with float as start and negative integer as end", () => {
+        expect(function () { slice(nonEmptyArray, 2.4, -2) }).to.throw(TypeError);
+    });
+
+    it("SLICE29: non empty array with zero as start and float as end", () => {
+        expect(function () { slice(nonEmptyArray, 0, 3.4) }).to.throw(TypeError);
+    });
+
+    it("SLICE30: non empty array with illegal value as start and zero as end", () => {
+        expect(function () { slice(nonEmptyArray, "string", 0) }).to.throw(TypeError);
+    });
+
+    it("SLICE31: empty inputs", () => {
+        expect(slice()).to.deep.equal([]);
+    });
+
+    it("SLICE32: non array with higher positive integer as start and lower positive integer as end", () => {
+        expect(function () { slice(nonArray, 5, 2) }).to.throw(TypeError);
+    });
+
+    it("SLICE33: empty array with higher positive integer as start and lower positive integer as end", () => {
+        expect(function () { slice([], 5, 2) }).to.throw(TypeError);
+    });
+
+    it("SLICE34: non empty array with higher positive integer as start and lower positive integer as end", () => {
+        expect(function () { slice(nonEmptyArray, 4, 1) }).to.throw(TypeError);
+    });
+
+    it("SLICE35: non array with lower negative integer as start and higher negative integer as end", () => {
+        expect(function () { slice(nonArray, -4, -1) }).to.throw(TypeError);
+    });
+
+    it("SLICE36: empty array with lower negative integer as start and higher negative integer as end", () => {
+        expect(function () { slice([], -4, -1) }).to.throw(TypeError);
+    });
+
+    it("SLICE37: non empty array with lower negative integer as start and higher negative integer as end", () => {
+        expect(function () { slice(nonEmptyArray, -5, -1) }).to.throw(TypeError);
     });
 
 });
