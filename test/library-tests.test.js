@@ -124,7 +124,7 @@ describe("defaultToAny.js - Provides a default value from a list of potential va
         expect(defaultToAny(1, lists, object)).to.equal(1);
     });
 
-    it("DEFAULTTOANY18: values with first defined value as an object returs the object", () => {
+    it("DEFAULTTOANY18: values with first defined value as an object returns the object", () => {
         const car = {
             model: "Toyota",
             color: "Silver"
@@ -140,7 +140,7 @@ describe("defaultToAny.js - Provides a default value from a list of potential va
         expect(defaultToAny(str, objects, lists)).to.equal(str);
     });
 
-    it("DEFAULTTOANY20: undefined values and undefined default values retunrs the last undefined value", () => {
+    it("DEFAULTTOANY20: undefined values and undefined default values returns the last undefined value", () => {
         expect(defaultToAny(null, NaN)).to.deep.equal(NaN);
     });
 
@@ -149,7 +149,7 @@ describe("defaultToAny.js - Provides a default value from a list of potential va
         expect(defaultToAny(undefined, object)).to.equal(object);
     });
 
-    it("DEFAULTTOANY22: undefined value and defined array retunrs the array", () => {
+    it("DEFAULTTOANY22: undefined value and defined array returns the array", () => {
         const lists = [5, 10, 20, 0];
         expect(defaultToAny(NaN, lists)).to.equal(lists);
     });
@@ -160,7 +160,7 @@ describe("defaultToAny.js - Provides a default value from a list of potential va
         expect(defaultToAny(object, lists)).to.equal(object);
     });
 
-    it("DEFAULTTOANY24: defined empty str and defined empty array retunrs the first defined value", () => {
+    it("DEFAULTTOANY24: defined empty str and defined empty array returns the first defined value", () => {
         const str = "";
         const lists = ['a', 2, 'red'];
         expect(defaultToAny(str, lists)).to.equal(str);
@@ -171,7 +171,7 @@ describe("defaultToAny.js - Provides a default value from a list of potential va
         expect(defaultToAny(lists, NaN)).to.equal(lists);
     });
 
-    it("DEFAULTTOANY26: two defined values retunrs the first value", () => {
+    it("DEFAULTTOANY26: two defined values returns the first value", () => {
         const car = {
             model: "Toyota",
             color: "Silver"
@@ -184,12 +184,12 @@ describe("defaultToAny.js - Provides a default value from a list of potential va
         expect(defaultToAny(lists, undefined)).to.equal(lists);
     });
 
-    it("DEFAULTTOANY28: two defined values retunrs the first value", () => {
+    it("DEFAULTTOANY28: two defined values returns the first value", () => {
         const object = {};
         expect(defaultToAny(1500, object)).to.equal(1500);
     });
 
-    it("DEFAULTTOANY29: one defined value retunrs the defined value", () => {
+    it("DEFAULTTOANY29: one defined value returns the defined value", () => {
         expect(defaultToAny(1.5)).to.equal(1.5);
     });
 
@@ -464,6 +464,10 @@ describe("toNumber.js - Converts the given value to a number", () => {
         expect(toNumber([1, 2, 3])).to.deep.equal(NaN);
     });
 
+    it("TONUMBER10: Bad signed hex as an input returns NaN", () => {
+        expect(toNumber('-0x8BADF00D')).to.deep.equal(NaN);
+    });
+
 });
 
 describe("add.js - Adding 2 numbers", () => {
@@ -615,7 +619,7 @@ describe("slice.js - Converts the given value to a number", () => {
         expect(slice([], 1, 2)).to.deep.equal([]);
     });
 
-    it("SLICE2: empty array with negative integer start and end, retunrs empty array", () => {
+    it("SLICE2: empty array with negative integer start and end, returns empty array", () => {
         expect(slice([], -1, -2)).to.deep.equal([]);
     });
 
@@ -623,7 +627,7 @@ describe("slice.js - Converts the given value to a number", () => {
         expect(function () { slice([], 1.5, 2.5) }).to.throw(TypeError);
     });
 
-    it("SLICE4: empty array with zero as start an end, retunrs empty array", () => {
+    it("SLICE4: empty array with zero as start an end, returns empty array", () => {
         expect(slice([], 0, 0)).to.deep.equal([]);
     });
 
@@ -631,7 +635,7 @@ describe("slice.js - Converts the given value to a number", () => {
         expect(function () { slice([], "world", 3) }).to.throw(TypeError);
     });
 
-    it("SLICE6: empty array with no start and end, retunrs empty array", () => {
+    it("SLICE6: empty array with no start and end, returns empty array", () => {
         expect(slice([])).to.deep.equal([]);
     });
 
@@ -687,7 +691,7 @@ describe("slice.js - Converts the given value to a number", () => {
         expect(function () { slice([], 1, "string") }).to.throw(TypeError);
     });
 
-    it("SLICE22: empty array with negative integer as start, retunrs empty array", () => {
+    it("SLICE22: empty array with negative integer as start, returns empty array", () => {
         expect(slice([], -2)).to.deep.equal([]);
     });
 
@@ -695,7 +699,7 @@ describe("slice.js - Converts the given value to a number", () => {
         expect(function () { slice([], 3.6, 2) }).to.throw(TypeError);
     });
 
-    it("SLICE24: empty array with zero as start and negative integer as end, retunrs empty array", () => {
+    it("SLICE24: empty array with zero as start and negative integer as end, returns empty array", () => {
         expect(slice([], 0, -2)).to.deep.equal([]);
     });
 
@@ -731,11 +735,11 @@ describe("slice.js - Converts the given value to a number", () => {
         expect(function () { slice(nonArray, 5, 2) }).to.throw(TypeError);
     });
 
-    it("SLICE33: empty array with higher positive integer as start and lower positive integer as end, retunrs empty array", () => {
+    it("SLICE33: empty array with higher positive integer as start and lower positive integer as end, returns empty array", () => {
         expect(slice([], 5, 2)).to.deep.equal([]);
     });
 
-    it("SLICE34: non empty array with higher positive integer as start and lower positive integer as end, retunrs empty array", () => {
+    it("SLICE34: non empty array with higher positive integer as start and lower positive integer as end, returns empty array", () => {
         expect(slice(nonEmptyArray, 4, 1)).to.deep.equal([]);
     });
 
@@ -743,7 +747,7 @@ describe("slice.js - Converts the given value to a number", () => {
         expect(function () { slice(nonArray, -4, -1) }).to.throw(TypeError);
     });
 
-    it("SLICE36: empty array with lower negative integer as start and higher negative integer as end, retunrs empty array", () => {
+    it("SLICE36: empty array with lower negative integer as start and higher negative integer as end, returns empty array", () => {
         expect(slice([], -4, -1)).to.deep.equal([]);
     });
 
