@@ -1,3 +1,13 @@
+/**
+ * Test Suite for Online Shop Utility Library
+ * 
+ * The below "describe" blocks have been used to test the 10 highest priority functions
+ * as determined in our initial test plan.
+ * 
+ * Each test case is defined in its own "it" block and is referenced with a unique code
+ * followed by a description of what the test case is testing and the expected result.
+ */
+
 // Import testing assertion libraries
 import chai from 'chai';
 const expect = chai.expect;
@@ -14,8 +24,8 @@ import toNumber from "../test-object/src/toNumber.js";
 import slice from "../test-object/src/slice.js";
 import clamp from "../test-object/src/clamp.js";
 
-// Tests to be implemented by Andrew: keys, map, clamp, filter, upperFirst
-// Tests to be implemented by Gaurab: defaultToAny, ceil, toNumber, add, slice
+// Tests implemented by Andrew: keys, map, clamp, filter, upperFirst
+// Tests implemented by Gaurab: defaultToAny, ceil, toNumber, add, slice
 
 describe("defaultToAny.js - Provides a default value from a list of potential values, when passed undefined", () => {
 
@@ -210,6 +220,10 @@ describe("defaultToAny.js - Provides a default value from a list of potential va
         expect(defaultToAny(null, undefined, 20, NaN)).to.equal(20);
     });
 
+    // DEFAULTTOANY34: Test case removed
+
+    // DEFAULTTOANY35: Test case removed
+
 });
 
 describe("ceil.js - Rounds a number up with given precision", () => {
@@ -223,7 +237,6 @@ describe("ceil.js - Rounds a number up with given precision", () => {
     });
 
     it("CEIL3: round integer with illegal value returns NaN", () => {
-
         expect(ceil(6, "id")).to.deep.equal(NaN);
     });
 
@@ -236,7 +249,6 @@ describe("ceil.js - Rounds a number up with given precision", () => {
     });
 
     it("CEIL6: round float with illegal value throws error", () => {
-
         expect(function () { ceil(6.75, "id") }).to.throw(TypeError);
     });
 
@@ -264,11 +276,11 @@ describe("ceil.js - Rounds a number up with given precision", () => {
         expect(ceil()).to.deep.equal(NaN);
     });
 
-    it("CEIL13: round float with integer precision returns float ", () => {
+    it("CEIL13: round float with integer precision 3 returns float ", () => {
         expect(ceil(5.353, 3)).to.equal(5.353);
     });
 
-    it("CEIL14: round float with integer precision returns float", () => {
+    it("CEIL14: round float with integer precision 1 returns float", () => {
         expect(ceil(5.613, 1)).to.equal(5.7);
     });
 });
