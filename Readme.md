@@ -1,0 +1,1 @@
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/abarnuni/software-testing) ![GitHub Repo stars](https://img.shields.io/github/stars/abarnuni/software-testing?style=social) ![GitHub watchers](https://img.shields.io/github/watchers/abarnuni/software-testing?style=social) 
